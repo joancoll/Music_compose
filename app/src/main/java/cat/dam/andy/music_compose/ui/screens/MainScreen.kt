@@ -58,6 +58,7 @@ import cat.dam.andy.music_compose.MainActivity.Companion.VERT_PERCENT_PAGER_LAND
 import cat.dam.andy.music_compose.MainActivity.Companion.VERT_PERCENT_PAGER_PORTRAIT
 
 import cat.dam.andy.music_compose.viewmodel.MyViewModel
+import java.util.Locale
 import kotlin.math.ceil
 import kotlin.math.roundToInt
 
@@ -458,7 +459,7 @@ private fun Long.convertToTime(): String {
     val seconds = positiveValue / 1000
     val minutes = seconds / 60
     val hours = minutes / 60
-    return String.format("%02d:%02d:%02d", hours % 24, minutes % 60, seconds % 60)
+    return String.format(Locale.getDefault(),"%02d:%02d:%02d", hours % 24, minutes % 60, seconds % 60)
 }
 
 
