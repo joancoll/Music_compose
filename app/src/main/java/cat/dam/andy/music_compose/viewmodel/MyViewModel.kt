@@ -3,13 +3,18 @@ package cat.dam.andy.music_compose.viewmodel
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.OptIn
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,11 +28,11 @@ class MyViewModel : ViewModel() {
     val playerState: StateFlow<ExoPlayer?> = _playerState
     val errorMessage = MutableStateFlow<String?>(null)
 
-    var currentItemIndex by mutableStateOf(0)
-    var currentItemPosition by mutableStateOf(0L)
-    var currentItemDuration by mutableStateOf(0L)
-    var currentItemRemainingTime by mutableStateOf(0L)
-    var coverRotation by mutableStateOf(0f)
+    var currentItemIndex by mutableIntStateOf(0)
+    var currentItemPosition by mutableLongStateOf(0L)
+    var currentItemDuration by mutableLongStateOf(0L)
+    var currentItemRemainingTime by mutableLongStateOf(0L)
+    var coverRotation by mutableFloatStateOf(0f)
     var isPlaying by mutableStateOf(false)
     var isPlayerInitialized by mutableStateOf(false)
 
@@ -93,7 +98,7 @@ class MyViewModel : ViewModel() {
             }
         }
 
-        override fun onPlayerError(error: PlaybackException) {
+        @OptIn(UnstableApi::class) override fun onPlayerError(error: PlaybackException) {
             if (error.cause is androidx.media3.common.ParserException) {
                 val errorMessage = "Error: Incorrect MIME type or malformed media file."
                 Log.e("ExoPlayer:", errorMessage)
