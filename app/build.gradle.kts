@@ -1,16 +1,17 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
     namespace = "cat.dam.andy.music_compose"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "cat.dam.andy.music_compose"
         minSdk = 28
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
