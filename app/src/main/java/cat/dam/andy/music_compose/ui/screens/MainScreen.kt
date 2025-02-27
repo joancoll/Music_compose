@@ -63,7 +63,7 @@ import kotlin.math.ceil
 import kotlin.math.roundToInt
 
 
-var itemNumber by mutableStateOf(0)
+var itemNumber by mutableIntStateOf(0)
 
 @OptIn(ExperimentalFoundationApi::class)
 lateinit var pagerState: PagerState
